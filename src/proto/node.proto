@@ -4,12 +4,36 @@ syntax = "proto3";
 
 package com.barmetler.chord;
 
-import "google/protobuf/empty.proto";
-
 option java_multiple_files = true;
 option java_outer_classname = "NodeProto";
 option java_package = "com.barmetler.chord";
 
-message X {
-  google.protobuf.Empty x = 1;
+// Manages Nodes in the Chord Ring.
+//
+// Usually, this manages just one node, but can manage multiple (virtual) nodes.
+service NodeService {
+  rpc FindSuccessor (FindSuccessorRequest) returns (FindSuccessorResponse);
+  rpc GetPredecessor (GetPredecessorRequest) returns (GetPredecessorResponse);
 }
+
+message NodeInfo {
+  string id = 1;
+  string ip = 2;
+  uint32 port = 3;
+}
+
+message FindSuccessorRequest {
+  string node_id = 1;
+  string id = 2;
+}
+message FindSuccessorResponse {
+  NodeInfo node = 1;
+}
+
+message GetPredecessorRequest {
+  string node_id = 1;
+}
+message GetPredecessorResponse {
+  NodeInfo node = 1;
+}
+
