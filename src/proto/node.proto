@@ -36,4 +36,3 @@ message GetPredecessorRequest {
 message GetPredecessorResponse {
   NodeInfo node = 1;
 }
-
