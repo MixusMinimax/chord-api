@@ -27,7 +27,10 @@ message FindSuccessorRequest {
   string id = 2;
 }
 message FindSuccessorResponse {
-  NodeInfo node = 1;
+  oneof node {
+    NodeInfo successor = 1;
+    NodeInfo closest_preceding_node = 2;
+  }
 }
 
 message GetPredecessorRequest {
